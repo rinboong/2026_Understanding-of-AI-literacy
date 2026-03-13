@@ -1,2 +1,2 @@
-# 2026_AI-
+# 2026_Understanding of AI literacy
 AI리터러시의이해 포트폴리오
