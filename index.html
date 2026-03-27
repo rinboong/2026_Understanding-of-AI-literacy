@@ -32,7 +32,7 @@
             -webkit-text-fill-color: transparent;
         }
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
+            0%, 100!% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
         .animate-float { animation: float 5s ease-in-out infinite; }
@@ -75,6 +75,17 @@
                 Social Sciences x Software Convergence
             </div>
             
+            <!-- Hero 프로필 공간 -->
+            <div class="flex justify-center mb-8">
+                <div class="profile-ring animate-float shadow-2xl shadow-violet-500/20">
+                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden bg-white dark:bg-zinc-900 flex items-center justify-center border-4 border-white dark:border-zinc-950">
+                        <img id="hero-profile-img" src="" alt="차기현 프로필" class="w-full h-full object-cover hidden">
+                        <div id="hero-profile-fallback" class="text-zinc-300 dark:text-zinc-700">
+                             <i data-lucide="user" class="w-12 h-12"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight leading-tight text-zinc-900 dark:text-zinc-100">
                 AI와 데이터로<br />
@@ -241,7 +252,7 @@
     </footer>
 
     <script>
-        // 과제 데이터 (첫 번째 카드 링크 추가 및 버튼 텍스트 변경)
+        // 과제 데이터 업데이트
         const assignments = [
             { 
                 id: 1, 
@@ -250,9 +261,17 @@
                 tool: "Google Notebook LM", 
                 icon: "message-square", 
                 color: "violet",
-                link: "./02/index.html" // 이동할 링크 경로
+                link: "./02/index.html" 
             },
-            { id: 2, title: "텍스트 데이터 분석과 시각화", description: "대규모 텍스트 데이터를 수집하여 주요 키워드를 추출하고 워드클라우드 및 네트워크 그래프로 시각화.", tool: "R, Python", icon: "bar-chart-3", color: "blue", link: "#" },
+            { 
+                id: 2, 
+                title: "데이터 스토리텔링", 
+                description: "공공 데이터를 활용하여 인사이틑를 도출하고 시각화하여 스토리북으로 만들기", 
+                tool: "KOSIS 국가통계포털, Google Gemini", 
+                icon: "bar-chart-3", 
+                color: "blue", 
+                link: "./03/index.html" 
+            },
             { id: 3, title: "AI 멀티모달 콘텐츠 제작", description: "텍스트-투-이미지 AI를 활용하여 특정 주제에 맞는 고퀄리티 시각 자료 생성 및 스토리텔링.", tool: "Midjourney, DALL-E", icon: "image", color: "fuchsia", link: "#" },
             { id: 4, title: "공공 데이터 의미 해석", description: "사회 현상을 보여주는 통계 데이터를 분석하여 데이터 이면에 숨겨진 사회적 맥락 파악 및 리포트 작성.", tool: "Excel, R", icon: "database", color: "emerald", link: "#" },
             { id: 5, title: "AI 윤리와 할루시네이션", description: "생성형 AI의 한계점인 환각 현상을 추적하고, AI 기술 활용 시 발생할 수 있는 윤리적 딜레마 고찰.", tool: "Research Paper", icon: "brain", color: "orange", link: "#" },
