@@ -138,27 +138,32 @@
 
         .btn-primary { background-color: var(--primary-color); color: white; }
         .btn-secondary { background-color: var(--secondary-color); color: white; }
+        .btn-close { background-color: #636e72; color: white; margin-top: 10px; }
         
         .btn:hover { transform: translateY(-2px); opacity: 0.9; }
 
-        /* 미디어 디스플레이 영역 */
-        .media-display {
+        /* 미디어 디스플레이 영역 (기본적으로 숨김) */
+        .media-display-container {
+            display: none; /* 초기 상태: 숨김 */
             position: relative;
             background: #2d3436;
             border-radius: 12px;
             overflow: hidden;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-top: 20px;
+            flex-direction: column;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .content-panel {
             display: none;
             width: 100%;
-            height: 100%;
-            min-height: 500px;
+            height: 500px;
         }
 
         .content-panel.active {
@@ -167,9 +172,18 @@
 
         video, iframe {
             width: 100%;
-            height: 500px;
+            height: 100%;
             border: none;
             display: block;
+        }
+
+        .media-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #1e272e;
+            color: white;
         }
 
         #status-msg {
@@ -289,19 +303,25 @@
 <!-- 미디어 학습 섹션 -->
 <section>
     <h2>4. 멀티미디어 학습 자료</h2>
-    <p>아래 버튼을 눌러 준비된 학습 영상과 슬라이드 문서를 확인하세요.</p>
+    <p>아래 버튼을 눌러 학습에 필요한 파일을 열어보세요.</p>
     
     <div class="media-controls">
         <button class="btn btn-primary" onclick="openMedia('video')">📺 영상 보기</button>
         <button class="btn btn-secondary" onclick="openMedia('slides')">🖼️ 슬라이드 보기</button>
     </div>
 
-    <div class="media-display">
-        <!-- 비디어 재생 패널 -->
-        <div id="video-panel" class="content-panel active">
-            <video id="web-video" controls poster="https://via.placeholder.com/900x500/2d3436/ffffff?text=Video+Ready">
+    <!-- 미디어 플레이어 영역 (JS로 제어) -->
+    <div id="media-viewer" class="media-display-container">
+        <div class="media-header">
+            <span id="media-title">Media Player</span>
+            <button class="btn btn-close" onclick="closeMedia()" style="padding: 5px 12px; margin: 0;">닫기 ✕</button>
+        </div>
+        
+        <!-- 비디오 패널 -->
+        <div id="video-panel" class="content-panel">
+            <video id="web-video" controls>
                 <source src="./video.mp4" type="video/mp4">
-                브라우저가 비디오 태그를 지원하지 않습니다.
+                비디오를 지원하지 않는 브라우저입니다.
             </video>
         </div>
 
@@ -333,24 +353,41 @@
 
 <script>
     function openMedia(type) {
+        const viewer = document.getElementById('media-viewer');
         const videoPanel = document.getElementById('video-panel');
         const slidesPanel = document.getElementById('slides-panel');
         const videoElement = document.getElementById('web-video');
+        const titleElement = document.getElementById('media-title');
         
-        // 모든 패널 숨기기
+        // 뷰어 활성화 (숨김 해제)
+        viewer.style.display = 'flex';
+        
+        // 기존 패널 비활성화
         videoPanel.classList.remove('active');
         slidesPanel.classList.remove('active');
-        
-        // 영상 일시정지 (전환 시 소리 차단)
         videoElement.pause();
 
         if (type === 'video') {
             videoPanel.classList.add('active');
-            showMessage("영상 학습 파일을 불러왔습니다: ./video.mp4");
+            titleElement.innerText = "Learning Video: ./04/video.mp4";
+            showMessage("영상 파일을 열었습니다.");
         } else {
             slidesPanel.classList.add('active');
-            showMessage("슬라이드 문서를 불러왔습니다: ./slide.pdf");
+            titleElement.innerText = "Learning Slides: ./04/slide.pdf";
+            showMessage("슬라이드 문서를 열었습니다.");
         }
+
+        // 뷰어로 자동 스크롤
+        viewer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function closeMedia() {
+        const viewer = document.getElementById('media-viewer');
+        const videoElement = document.getElementById('web-video');
+        
+        viewer.style.display = 'none';
+        videoElement.pause();
+        showMessage("미디어 창을 닫았습니다.");
     }
 
     function showMessage(msg) {
