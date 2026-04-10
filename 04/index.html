@@ -345,6 +345,428 @@
                 <!-- PDF를 바로 표시하지 못할 때 보여줄 내용 -->
                 <div class="pdf-fallback">
                     <p>PDF 파일을 브라우저 내에서 표시할 수 없습니다.</p>
+                    <a href="./slide.pdf" target="_blank" class="btn btn-primary">PDF 파일 직접 열기 / 다운로드</a>
+                    <p style="font-size: 0.8rem; color: #636e72; margin-top: 10px;">(브라우저 설정에 따라 새 탭에서 열리거나 다운로드될 수 있습니다.)</p>
+                </div>
+            </object>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>5. 파일 경로의 이해</h2>
+    <p>파일을 연결할 때 사용하는 경로 지정 방법입니다.</p>
+    <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+            <code class="highlight">./04/video.mp4</code> : 현재 폴더 안의 04 폴더 내 영상 파일
+        </li>
+        <li style="margin-bottom: 10px; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+            <code class="highlight">../index.html</code> : 현재 위치에서 한 단계 위로 나가서 찾는 홈 파일
+        </li>
+    </ul>
+</section>
+
+<div id="status-msg">메시지</div>
+
+<footer>
+    <p>&copy; 2026 Web Learning Guide. 전문적인 웹 개발 학습을 응원합니다.</p>
+</footer>
+
+<script>
+    function openMedia(type) {
+        const viewer = document.getElementById('media-viewer');
+        const videoPanel = document.getElementById('video-panel');
+        const slidesPanel = document.getElementById('slides-panel');
+        const videoElement = document.getElementById('web-video');
+        const titleElement = document.getElementById('media-title');
+        
+        // 뷰어 활성화 (숨김 해제)
+        viewer.style.display = 'flex';
+        
+        // 기존 패널 비활성화
+        videoPanel.classList.remove('active');
+        slidesPanel.classList.remove('active');
+        videoElement.pause();
+
+        if (type === 'video') {
+            videoPanel.classList.add('active');
+            titleElement.innerText = "Learning Video: ./04/video.mp4";
+            showMessage("영상 파일을 열었습니다.");
+        } else {
+            slidesPanel.classList.add('active');
+            titleElement.innerText = "Learning Slides: ./04/slide.pdf";
+            showMessage("슬라이드 문서를 열었습니다.");
+        }
+
+        // 뷰어로 자동 스크롤
+        viewer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function closeMedia() {
+        const viewer = document.getElementById('media-viewer');
+        const videoElement = document.getElementById('web-video');
+        
+        viewer.style.display = 'none';
+        videoElement.pause();
+        showMessage("미디어 창을 닫았습니다.");
+    }
+
+    function showMessage(msg) {
+        const statusBox = document.getElementById('status-msg');
+        statusBox.innerText = msg;
+        statusBox.style.display = 'block';
+        setTimeout(() => { statusBox.style.display = 'none'; }, 2500);
+    }
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발 입문 가이드 - 미디어 센터</title>
+    <style>
+        :root {
+            --primary-color: #0984e3;
+            --secondary-color: #00b894;
+            --accent-color: #d63031;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-main: #2d3436;
+            --border-color: #dfe6e9;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--bg-color);
+        }
+
+        /* 상단 고정 홈 아이콘 스타일 */
+        .home-fixed-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            width: 50px;
+            height: 50px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-main);
+            border: 1px solid #eee;
+        }
+
+        .home-fixed-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .home-fixed-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            border-left: 6px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* 요소 설명 테이블 스타일 */
+        .element-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .element-table th, .element-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        .element-table th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        code {
+            background-color: #f1f2f6;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #e83e8c;
+        }
+
+        /* 미디어 제어 영역 */
+        .media-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary { background-color: var(--primary-color); color: white; }
+        .btn-secondary { background-color: var(--secondary-color); color: white; }
+        .btn-close { background-color: #636e72; color: white; margin-top: 10px; }
+        
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        /* 미디어 디스플레이 영역 (기본적으로 숨김) */
+        .media-display-container {
+            display: none; /* 초기 상태: 숨김 */
+            position: relative;
+            background: #2d3436;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 20px;
+            flex-direction: column;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-panel {
+            display: none;
+            width: 100%;
+            height: 500px;
+            background-color: #f1f2f6;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        video, object, iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* PDF 대체 텍스트/링크 스타일 */
+        .pdf-fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-main);
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .media-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #1e272e;
+            color: white;
+        }
+
+        #status-msg {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            background: var(--text-main);
+            color: white;
+            border-radius: 50px;
+            display: none;
+            animation: slideUp 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #636e72;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 상단 고정 홈 아이콘 -->
+<a href="../index.html" class="home-fixed-btn" title="홈으로 돌아가기" aria-label="홈으로">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+</a>
+
+<header>
+    <h1>Web Development Basics</h1>
+    <p>HTML, CSS, JavaScript의 세계에 오신 것을 환영합니다</p>
+</header>
+
+<section>
+    <h2>1. 웹 개발의 3가지 핵심 언어</h2>
+    <p>웹 페이지를 만드는 과정은 <strong>'집 짓기'</strong>에 비유하면 매우 쉽습니다.</p>
+    <ul>
+        <li><strong>🏗️ HTML (뼈대):</strong> 기둥을 세우고 골조를 잡는 과정입니다. 제목, 본문, 버튼 등이 어디에 위치할지 정의합니다.</li>
+        <li><strong>🎨 CSS (인테리어):</strong> 벽지를 바르고 가구를 배치하는 과정입니다. 색상, 글꼴, 레이아웃 등 시각적 디자인을 입힙니다.</li>
+        <li><strong>⚡ JavaScript (전기와 근육):</strong> 전기를 연결해 불이 켜지게 하듯, 정적인 페이지를 살아 움직이게(동적으로) 만듭니다.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>2. HTML 기본 문서 구조</h2>
+    <p>모든 HTML 파일은 다음과 같은 표준 형식을 갖추어야 브라우저가 올바르게 해석합니다.</p>
+    <div style="background: #2d3436; color: #fab1a0; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 0.9rem;">
+        &lt;!DOCTYPE html&gt; <br>
+        &lt;html lang="ko"&gt;<br>
+        &nbsp;&nbsp;&lt;head&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;페이지 제목&lt;/title&gt;<br>
+        &nbsp;&nbsp;&lt;/head&gt;<br>
+        &nbsp;&nbsp;&lt;body&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;실제 화면에 나오는 내용&lt;/h1&gt;<br>
+        &nbsp;&nbsp;&lt;/body&gt;<br>
+        &lt;/html&gt;
+    </div>
+</section>
+
+<section>
+    <h2>3. 자주 사용하는 웹페이지 요소 (Tag)</h2>
+    <p>HTML 태그를 사용하여 정보를 구조화하는 방법입니다.</p>
+    <table class="element-table">
+        <thead>
+            <tr>
+                <th>태그</th>
+                <th>설명</th>
+                <th>사용 예시</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>&lt;h1&gt;</code>~<code>&lt;h6&gt;</code></td>
+                <td>중요도에 따른 제목 표시</td>
+                <td>가장 큰 제목은 h1</td>
+            </tr>
+            <tr>
+                <td><code>&lt;p&gt;</code></td>
+                <td>본문 문단 (Paragraph)</td>
+                <td>설명 글을 적을 때 사용</td>
+            </tr>
+            <tr>
+                <td><code>&lt;a&gt;</code></td>
+                <td>링크 (Anchor)</td>
+                <td>다른 페이지로 이동</td>
+            </tr>
+            <tr>
+                <td><code>&lt;img&gt;</code></td>
+                <td>이미지 삽입</td>
+                <td>사진이나 아이콘 표시</td>
+            </tr>
+            <tr>
+                <td><code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code></td>
+                <td>목록 (List)</td>
+                <td>리스트 형태의 항목 정리</td>
+            </tr>
+            <tr>
+                <td><code>&lt;button&gt;</code></td>
+                <td>클릭 가능한 버튼</td>
+                <td>이벤트 실행 시 사용</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- 미디어 학습 섹션 -->
+<section>
+    <h2>4. 멀티미디어 학습 자료</h2>
+    <p>아래 버튼을 눌러 학습에 필요한 파일을 열어보세요.</p>
+    
+    <div class="media-controls">
+        <button class="btn btn-primary" onclick="openMedia('video')">📺 영상 보기</button>
+        <button class="btn btn-secondary" onclick="openMedia('slides')">🖼️ 슬라이드 보기</button>
+    </div>
+
+    <!-- 미디어 플레이어 영역 (JS로 제어) -->
+    <div id="media-viewer" class="media-display-container">
+        <div class="media-header">
+            <span id="media-title">Media Player</span>
+            <button class="btn btn-close" onclick="closeMedia()" style="padding: 5px 12px; margin: 0;">닫기 ✕</button>
+        </div>
+        
+        <!-- 비디오 패널 -->
+        <div id="video-panel" class="content-panel">
+            <video id="web-video" controls>
+                <source src="./video.mp4" type="video/mp4">
+                비디오를 지원하지 않는 브라우저입니다.
+            </video>
+        </div>
+
+        <!-- 슬라이드(PDF) 패널 - object 태그로 개선 -->
+        <div id="slides-panel" class="content-panel">
+            <object id="web-slide" data="./slide.pdf" type="application/pdf">
+                <!-- PDF를 바로 표시하지 못할 때 보여줄 내용 -->
+                <div class="pdf-fallback">
+                    <p>PDF 파일을 브라우저 내에서 표시할 수 없습니다.</p>
                     <a href="./04/slide.pdf" target="_blank" class="btn btn-primary">PDF 파일 직접 열기 / 다운로드</a>
                     <p style="font-size: 0.8rem; color: #636e72; margin-top: 10px;">(브라우저 설정에 따라 새 탭에서 열리거나 다운로드될 수 있습니다.)</p>
                 </div>
