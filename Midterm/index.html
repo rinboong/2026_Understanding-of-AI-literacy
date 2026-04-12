@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socio-Technical Analysis Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #0f1115;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .glass {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .nav-tab {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-tab.active {
+            color: #60a5fa;
+            border-bottom: 2px solid #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <section class="min-h-[40vh] flex flex-col items-center justify-center px-6 relative border-b border-white/5">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute top-0 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-emerald-500/10 rounded-full blur-[120px]"></div>
+        </div>
+        
+        <div class="relative z-10 text-center space-y-4">
+            <h1 class="text-3xl md:text-5xl font-black tracking-tight">
+                DATA-DRIVEN <span class="gradient-text">SOCIOLOGY</span>
+            </h1>
+            <p class="text-slate-400 text-base md:text-lg max-w-2xl font-light">
+                사회적 통찰과 소프트웨어 기술의 융합을 통해<br>
+                복잡한 현대 사회의 구조를 분석하고 해결책을 제시합니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="sticky top-0 z-50 glass border-b border-white/10">
+        <div class="max-w-6xl mx-auto flex overflow-x-auto">
+            <button onclick="switchTab('about')" id="tab-btn-about" class="nav-tab active flex-1 py-5 px-4 text-sm font-bold transition-all whitespace-nowrap flex items-center justify-center gap-2">
+                <i data-lucide="user" class="w-4 h-4"></i> 자기소개
+            </button>
+            <button onclick="switchTab('major')" id="tab-btn-major" class="nav-tab flex-1 py-5 px-4 text-sm font-bold transition-all whitespace-nowrap flex items-center justify-center gap-2">
+                <i data-lucide="book" class="w-4 h-4"></i> 전공 역량
+            </button>
+            <button onclick="switchTab('data')" id="tab-btn-data" class="nav-tab flex-1 py-5 px-4 text-sm font-bold transition-all whitespace-nowrap flex items-center justify-center gap-2">
+                <i data-lucide="database" class="w-4 h-4"></i> 인사이트
+            </button>
+            <button onclick="switchTab('multimedia')" id="tab-btn-multimedia" class="nav-tab flex-1 py-5 px-4 text-sm font-bold transition-all whitespace-nowrap flex items-center justify-center gap-2">
+                <i data-lucide="layout" class="w-4 h-4"></i> 멀티미디어
+            </button>
+            <button onclick="switchTab('future')" id="tab-btn-future" class="nav-tab flex-1 py-5 px-4 text-sm font-bold transition-all whitespace-nowrap flex items-center justify-center gap-2">
+                <i data-lucide="trending-up" class="w-4 h-4"></i> 미래 설계
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto py-12 px-6 min-h-[60vh]">
+        
+        <!-- 1. Who Am I -->
+        <div id="about" class="tab-content active space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-bold text-white">나는 어떤 사람인가?</h2>
+                    <p class="text-slate-400 leading-relaxed text-lg font-light">
+                        사회 현상을 비판적으로 분석하고 그 배후에 숨겨진 구조적 문제를 탐구하는 데 깊은 관심을 가지고 있습니다. 단순히 문제를 지적하는 것에 그치지 않고, 데이터를 활용해 이를 객관적으로 증명하고 해결의 실마리를 찾는 과정을 즐깁니다.
+                        <br><br>
+                        소프트웨어 기술을 통해 사회 과학적 가설을 검증하고, 실질적인 대안을 구현하고자 노력하는 융합형 분석가 지향 인재입니다.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 glass rounded-xl border-l-4 border-blue-500">
+                            <h4 class="font-bold text-white mb-1">분석적 사고</h4>
+                            <p class="text-xs text-slate-500">현상의 근본 원인 파악</p>
+                        </div>
+                        <div class="p-4 glass rounded-xl border-l-4 border-emerald-500">
+                            <h4 class="font-bold text-white mb-1">논리적 기술</h4>
+                            <p class="text-xs text-slate-500">데이터 기반 객관적 증명</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass p-12 rounded-3xl flex flex-col items-center justify-center text-center">
+                    <div class="w-20 h-20 bg-blue-500/10 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="user-check" class="w-10 h-10 text-blue-500"></i>
+                    </div>
+                    <p class="text-slate-300 font-medium">"사회학적 통찰과 디지털 기술의 융합으로<br>사회의 지속 가능성을 연구합니다."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Major -->
+        <div id="major" class="tab-content space-y-12">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-white">전공: 사회학</h2>
+                <p class="text-slate-400">인간의 상호작용과 사회 구조를 과학적으로 탐구하여 세상의 작동 원리를 파악하는 학문입니다.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass p-8 rounded-xl space-y-4 card-hover">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-500">
+                        <i data-lucide="layers" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-white">구조적 통찰</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">개별 현상을 넘어 배후에 작동하는 제도적, 거시적 요인을 분석하여 문제의 본질을 이해합니다.</p>
+                </div>
+                <div class="glass p-8 rounded-xl space-y-4 card-hover">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-500">
+                        <i data-lucide="search" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-white">비판적 시각</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">당연시되는 사회적 합의의 이면을 검토하고, 공정성을 위한 변화의 지점을 논리적으로 도출합니다.</p>
+                </div>
+                <div class="glass p-8 rounded-xl space-y-4 card-hover">
+                    <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center text-purple-500">
+                        <i data-lucide="database" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-white">실증적 방법론</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">SW 기술과 통계 데이터를 결합하여 추상적인 담론을 실질적인 증거로 전환합니다.</p>
+                </div>
+            </div>
+
+            <!-- 미래적 의미 섹션 -->
+            <div class="mt-16 glass p-10 rounded-3xl border-t-4 border-blue-500/50">
+                <h3 class="text-2xl font-black mb-8 flex items-center gap-3 text-white">
+                    <i data-lucide="globe" class="text-blue-400"></i>
+                    이 시대 사회와 미래에 사회학의 의미
+                </h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <div class="space-y-4">
+                        <p class="text-slate-400 leading-relaxed font-light">
+                            AI는 확률에 기반한 평균적 결과를 내놓는다는 한계가 있습니다. 또한 사실이 아닌 정보가 자연스럽게 섞여 나오기도 합니다. 사회학의 핵심 개념인 '사회학적 상상력'은 AI의 정보를 의심하고 정확한 질문을 던지게 하는 데 중요한 역할을 할 수 있습니다. 
+                        </p>
+                        <p class="text-slate-400 leading-relaxed font-light">
+                            사회학은 전쟁과 정치혁명, 산업혁명 시기에 탄생한 학문으로, 시대 변화에 따라 함께 변화하는 학문입니다. 다른 학문과 달리 사회학은 당연하게 여겨지던 전제부터 의심하며 새로운 질문을 던집니다. 인공지능에게 어떤 질문을 던지는지가 결과물에서 큰 차이를 가져오듯, 질문을 정의하는 능력은 미래 AI 시대에도 필수적입니다. 
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-white/5 rounded-2xl flex gap-4 items-start border border-white/5">
+                            <i data-lucide="users-2" class="w-6 h-6 text-emerald-400 shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">사회 통합과 질문의 재정의</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">AI가 내놓는 '평균의 함정'을 경계하고, 소외된 계층을 포함할 수 있는 '정확한 질문'을 던짐으로써 기술을 통한 사회 통합 모델을 설계합니다.</p>
+                            </div>
+                        </div>
+                        <div class="p-5 bg-white/5 rounded-2xl flex gap-4 items-start border border-white/5">
+                            <i data-lucide="cpu" class="w-6 h-6 text-purple-400 shrink-0"></i>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">알고리즘 비판과 정보 검증</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">사회학적 상상력을 발휘하여 AI 알고리즘의 편향성과 할루시네이션(환각)을 포착하고, 당연한 전제를 의심하는 비판적 프레임을 제공합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Insights -->
+        <div id="data" class="tab-content space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass p-10 rounded-3xl">
+                    <h3 class="text-xl font-bold mb-8 flex items-center gap-2 text-white">
+                        <i data-lucide="line-chart" class="text-blue-500"></i> 사회과학 융합 인재 수요 전망
+                    </h3>
+                    <div class="h-64">
+                        <canvas id="insightChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-6 italic">* IT 역량을 갖춘 사회과학 전공자의 시장 수요 추이 (가상 데이터 활용)</p>
+                </div>
+                <div class="glass p-10 rounded-3xl space-y-6">
+                    <h3 class="text-xl font-bold flex items-center gap-2 text-emerald-400">
+                        <i data-lucide="zap"></i> NotebookLM 분석 리포트
+                    </h3>
+                    <div class="space-y-6 text-sm text-slate-300 leading-relaxed">
+                        <div class="p-5 bg-white/5 rounded-xl border border-white/5">
+                            <p class="font-bold text-white mb-1">데이터 리터러시</p>
+                            사회의 복잡성을 수치로 해독하는 능력이 분석가의 핵심 역량이 되고 있습니다.
+                        </div>
+                        <div class="p-5 bg-white/5 rounded-xl border border-white/5">
+                            <p class="font-bold text-white mb-1">기술 윤리 역량</p>
+                            알고리즘의 공정성을 검증할 수 있는 사회학적 관점을 가진 개발자 수요가 급증하고 있습니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Multimedia -->
+        <div id="multimedia" class="tab-content space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
+                    <div class="absolute inset-0 flex items-center justify-center bg-blue-500/10 transition">
+                        <i data-lucide="bar-chart" class="w-16 h-16 text-blue-500/30"></i>
+                    </div>
+                    <div class="absolute bottom-8 left-8">
+                        <p class="text-xs text-blue-400 font-mono mb-2 uppercase">Infographic</p>
+                        <h4 class="font-bold text-xl text-white">디지털 양극화 분석 인포그래픽</h4>
+                    </div>
+                </div>
+                <div class="glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
+                    <div class="absolute inset-0 flex items-center justify-center bg-emerald-500/10 transition">
+                        <i data-lucide="play" class="w-16 h-16 text-emerald-500/30"></i>
+                    </div>
+                    <div class="absolute bottom-8 left-8">
+                        <p class="text-xs text-emerald-400 font-mono mb-2 uppercase">Video Content</p>
+                        <h4 class="font-bold text-xl text-white">비판적 시각을 담은 자기소개 영상</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Future Plan -->
+        <div id="future" class="tab-content space-y-12 max-w-4xl mx-auto">
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white">미래 설계: 사회 분석 전문가</h2>
+                <p class="text-slate-400 text-lg font-light">사회학적 상상력과 정밀한 기술력을 겸비한 분석가</p>
+            </div>
+            <div class="space-y-6">
+                <div class="p-8 glass rounded-3xl border border-white/5 flex items-start gap-6 card-hover">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0">
+                        <span class="text-blue-400 font-bold">01</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl text-white mb-2">데이터 저널리스트</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">중요한 사회적 질문을 던지고, 데이터를 통해 과학적으로 답을 찾아 대중에게 투명하게 전달하는 전문가가 되겠습니다.</p>
+                    </div>
+                </div>
+                <div class="p-8 glass rounded-3xl border border-white/5 flex items-start gap-6 card-hover">
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                        <span class="text-emerald-400 font-bold">02</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl text-white mb-2">소셜 데이터 사이언티스트</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">빅데이터를 활용해 실질적인 불평등 문제를 시각화하고, 데이터에 기반한 실효성 있는 정책 대안을 설계하겠습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/5 text-center text-slate-600 text-sm">
+        <p>© 2025 PNU Sociology & SW Convergence Portfolio.</p>
+    </footer>
+
+    <script>
+        // Lucide 아이콘 초기화
+        lucide.createIcons();
+
+        let myChart = null;
+
+        // 탭 전환 함수
+        function switchTab(tabId) {
+            // 모든 탭 콘텐츠 숨기기
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+                content.style.opacity = '0'; // 애니메이션을 위해 투명도 초기화
+            });
+
+            // 모든 탭 버튼 비활성화
+            const buttons = document.querySelectorAll('.nav-tab');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 선택된 탭 콘텐츠 및 버튼 활성화
+            const activeContent = document.getElementById(tabId);
+            activeContent.classList.add('active');
+            document.getElementById('tab-btn-' + tabId).classList.add('active');
+
+            // GSAP 애니메이션 효과
+            gsap.fromTo(activeContent, 
+                { opacity: 0, y: 15 }, 
+                { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+            );
+
+            // 차트 탭일 경우 차트 초기화
+            if (tabId === 'data') {
+                setTimeout(initChart, 100);
+            }
+
+            // 탭 클릭 시 화면 최상단으로 스크롤 (네비게이션 위치 고려)
+            const navPos = document.querySelector('nav').offsetTop;
+            window.scrollTo({ top: navPos - 10, behavior: 'smooth' });
+        }
+
+        // Chart.js 초기화
+        function initChart() {
+            const ctx = document.getElementById('insightChart').getContext('2d');
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['일반 전공', '사회학 + SW 융합'],
+                    datasets: [{
+                        label: '시장 수요 (점수)',
+                        data: [60, 95],
+                        backgroundColor: ['rgba(59, 130, 246, 0.1)', 'rgba(52, 211, 153, 0.3)'],
+                        borderColor: ['#3b82f6', '#34d399'],
+                        borderWidth: 2,
+                        borderRadius: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#64748b' }
+                        },
+                        x: { 
+                            grid: { display: false },
+                            ticks: { color: '#94a3b8', font: { weight: 'bold' } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 초기 페이지 로드 시 'about' 탭 실행
+        window.onload = () => {
+            switchTab('about');
+        };
+    </script>
+</body>
+</html>
