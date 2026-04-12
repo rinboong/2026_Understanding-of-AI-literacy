@@ -232,21 +232,22 @@
         <!-- 4. Multimedia -->
         <div id="multimedia" class="tab-content space-y-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
-                    <div class="absolute inset-0 flex items-center justify-center bg-blue-500/10 transition">
+                <!-- 인포그래픽 카드: 클릭 시 ./info.png 열림 -->
+                <a href="./info.png" target="_blank" class="block glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
+                    <div class="absolute inset-0 flex items-center justify-center bg-blue-500/10 transition group-hover:bg-blue-500/20">
                         <i data-lucide="bar-chart" class="w-16 h-16 text-blue-500/30"></i>
                     </div>
                     <div class="absolute bottom-8 left-8">
-                        <p class="text-xs text-blue-400 font-mono mb-2 uppercase">Infographic</p>
-                        <h4 class="font-bold text-xl text-white">디지털 양극화 분석 인포그래픽</h4>
+                        <p class="text-xs text-blue-400 font-mono mb-2 uppercase tracking-widest">Infographic</p>
+                        <h4 class="font-bold text-xl text-white">데이터화 시대 사회과학 진화와 거버넌스</h4>
                     </div>
-                </div>
+                </a>
                 <div class="glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
                     <div class="absolute inset-0 flex items-center justify-center bg-emerald-500/10 transition">
                         <i data-lucide="play" class="w-16 h-16 text-emerald-500/30"></i>
                     </div>
                     <div class="absolute bottom-8 left-8">
-                        <p class="text-xs text-emerald-400 font-mono mb-2 uppercase">Video Content</p>
+                        <p class="text-xs text-emerald-400 font-mono mb-2 uppercase tracking-widest">Video Content</p>
                         <h4 class="font-bold text-xl text-white">비판적 시각을 담은 자기소개 영상</h4>
                     </div>
                 </div>
