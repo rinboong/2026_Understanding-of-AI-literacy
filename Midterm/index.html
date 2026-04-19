@@ -17,6 +17,7 @@
             color: #e2e8f0;
             margin: 0;
             padding: 0;
+            word-break: keep-all;
         }
 
         .glass {
@@ -55,7 +56,12 @@
         .card-hover:hover {
             transform: translateY(-5px);
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+        }
+
+        /* 가독성을 위한 텍스트 그림자 */
+        .shadow-text {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
     </style>
 </head>
@@ -164,7 +170,6 @@
                 </div>
             </div>
 
-            <!-- 미래적 의미 섹션 -->
             <div class="mt-16 glass p-10 rounded-3xl border-t-4 border-blue-500/50">
                 <h3 class="text-2xl font-black mb-8 flex items-center gap-3 text-white">
                     <i data-lucide="globe" class="text-blue-400"></i>
@@ -200,63 +205,105 @@
         </div>
 
         <!-- 3. Insights -->
-        <div id="data" class="tab-content space-y-8">
+        <div id="data" class="tab-content space-y-10">
+            <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <i data-lucide="file-text" class="text-blue-400"></i>
+                    사회과학의 데이터 사이언스 전환과 과제: 핵심 요약
+                </h2>
+                <p class="text-slate-300 leading-relaxed font-light">
+                    전통적인 사회과학은 이제 <span class="text-blue-400 font-bold">'계산사회과학(CSS)'</span>과 <span class="text-emerald-400 font-bold">'소셜 데이터 사이언스(SDS)'</span>로 진화하고 있습니다. 방대한 소셜 미디어와 행정 데이터를 AI 기법(텍스트 마이닝, 기계 학습 등)으로 분석하여 정밀한 사회적 통찰과 위험 예측을 가능하게 합니다.
+                </p>
+            </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass p-10 rounded-3xl">
-                    <h3 class="text-xl font-bold mb-8 flex items-center gap-2 text-white">
-                        <i data-lucide="line-chart" class="text-blue-500"></i> 사회과학 융합 인재 수요 전망
+                <div class="glass p-8 rounded-3xl">
+                    <h3 class="text-lg font-bold mb-6 flex items-center gap-2 text-white">
+                        <i data-lucide="trending-down" class="text-red-400"></i> 청년층(15~29세) 고용 하락세 (2026.03 기준)
                     </h3>
-                    <div class="h-64">
-                        <canvas id="insightChart"></canvas>
+                    <div class="h-64 relative">
+                        <canvas id="employmentChart"></canvas>
                     </div>
-                    <p class="text-xs text-slate-500 mt-6 italic">* IT 역량을 갖춘 사회과학 전공자의 시장 수요 추이 (가상 데이터 활용)</p>
                 </div>
-                <div class="glass p-10 rounded-3xl space-y-6">
-                    <h3 class="text-xl font-bold flex items-center gap-2 text-emerald-400">
-                        <i data-lucide="zap"></i> NotebookLM 분석 리포트
-                    </h3>
-                    <div class="space-y-6 text-sm text-slate-300 leading-relaxed">
-                        <div class="p-5 bg-white/5 rounded-xl border border-white/5">
-                            <p class="font-bold text-white mb-1">데이터 리터러시</p>
-                            사회의 복잡성을 수치로 해독하는 능력이 분석가의 핵심 역량이 되고 있습니다.
-                        </div>
-                        <div class="p-5 bg-white/5 rounded-xl border border-white/5">
-                            <p class="font-bold text-white mb-1">기술 윤리 역량</p>
-                            알고리즘의 공정성을 검증할 수 있는 사회학적 관점을 가진 개발자 수요가 급증하고 있습니다.
-                        </div>
+
+                <div class="space-y-6">
+                    <div class="glass p-6 rounded-2xl border border-white/5">
+                        <h4 class="font-bold text-emerald-400 mb-3 flex items-center gap-2">
+                            <i data-lucide="user-minus"></i> 1인 가구 확산의 경제적 취약성
+                        </h4>
+                        <p class="text-sm text-slate-300 leading-relaxed font-light">
+                            2023년 기준 세 가구 중 한 가구가 1인 가구이나, 이들의 소득은 다인 가구 대비 <span class="text-white font-bold">34% 낮고</span>, 순자산은 <span class="text-white font-bold">59% 수준</span>에 불과합니다.
+                        </p>
                     </div>
+                    <div class="glass p-6 rounded-2xl border border-white/5">
+                        <h4 class="font-bold text-purple-400 mb-3 flex items-center gap-2">
+                            <i data-lucide="shield-alert"></i> 데이터 거버넌스와 윤리
+                        </h4>
+                        <p class="text-sm text-slate-300 leading-relaxed font-light">
+                            데이터 활용 급증에 따라 개인정보 보호 및 익명 처리, 표준화된 데이터 인용 체계(DOI 등) 확립이 연구 신뢰성 확보의 핵심 요소로 부상했습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass p-6 rounded-xl border-t-2 border-blue-500 text-center">
+                    <h5 class="font-bold text-white mb-2 italic">텍스트 마이닝</h5>
+                    <p class="text-xs text-slate-400">여론 조사 정확도 최대 15% 향상</p>
+                </div>
+                <div class="glass p-6 rounded-xl border-t-2 border-emerald-500 text-center">
+                    <h5 class="font-bold text-white mb-2 italic">위험 예측 모델</h5>
+                    <p class="text-xs text-slate-400">의료 보장 입원율 예측(정확도 80%)</p>
+                </div>
+                <div class="glass p-6 rounded-xl border-t-2 border-purple-500 text-center">
+                    <h5 class="font-bold text-white mb-2 italic">미래 전략 지표</h5>
+                    <p class="text-xs text-slate-400">저출산·고령화 대응 하위 지표 구축</p>
                 </div>
             </div>
         </div>
 
-        <!-- 4. Multimedia -->
+        <!-- 4. Multimedia (그레이디언트 강화 및 가독성 개선) -->
         <div id="multimedia" class="tab-content space-y-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- 인포그래픽 카드 -->
                 <a href="./info.png" target="_blank" class="block glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
-                    <img src="./info.png" alt="인포그래픽 미리보기" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-500" onerror="this.style.display='none'">
+                    <img src="./info.png" alt="인포그래픽" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" onerror="this.style.display='none'">
                     
-                    <div class="absolute inset-0 flex items-center justify-center bg-blue-500/10 group-hover:bg-transparent transition">
-                        <i data-lucide="zoom-in" class="w-12 h-12 text-blue-500/40 opacity-0 group-hover:opacity-100 transition"></i>
+                    <!-- 강화된 블랙 그레이디언트 오버레이 -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="p-3 bg-blue-500/20 rounded-full backdrop-blur-md border border-blue-500/50">
+                            <i data-lucide="zoom-in" class="w-8 h-8 text-blue-400"></i>
+                        </div>
                     </div>
                     
-                    <div class="absolute bottom-8 left-8">
-                        <p class="text-xs text-blue-400 font-mono mb-2 uppercase tracking-widest">Infographic</p>
-                        <h4 class="font-bold text-xl text-white">데이터화 시대 사회과학 진화와 거버넌스</h4>
+                    <div class="absolute bottom-8 left-8 right-8 shadow-text">
+                        <p class="text-xs text-blue-400 font-bold mb-2 uppercase tracking-widest flex items-center gap-2">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span> Infographic
+                        </p>
+                        <h4 class="font-bold text-xl md:text-2xl text-white leading-tight">데이터화 시대 사회과학 진화와 거버넌스</h4>
                     </div>
                 </a>
                 
-                <!-- 비디오 카드: 클릭 시 ./video.mp4 재생 및 썸네일 표시 -->
+                <!-- 비디오 카드 -->
                 <a href="./video.mp4" target="_blank" class="block glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
-                    <!-- 영상 썸네일 이미지: ./thumb.png -->
-                    <img src="./thumb.png" alt="영상 썸네일 미리보기" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-500" onerror="this.style.display='none'">
+                    <img src="./thumb.png" alt="영상 썸네일" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" onerror="this.style.display='none'">
                     
-                    <div class="absolute inset-0 flex items-center justify-center bg-emerald-500/10 transition group-hover:bg-transparent">
-                        <i data-lucide="play-circle" class="w-16 h-16 text-emerald-500/30 group-hover:text-emerald-500/60 transition"></i>
+                    <!-- 강화된 블랙 그레이디언트 오버레이 -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="p-4 bg-emerald-500/30 rounded-full backdrop-blur-md border border-emerald-500/50 group-hover:scale-110 transition duration-300">
+                            <i data-lucide="play-circle" class="w-10 h-10 text-emerald-400"></i>
+                        </div>
                     </div>
-                    <div class="absolute bottom-8 left-8">
-                        <p class="text-xs text-emerald-400 font-mono mb-2 uppercase tracking-widest">Video Content</p>
-                        <h4 class="font-bold text-xl text-white">데이터로 읽는 인간, AI로 그리는 사회</h4>
+                    
+                    <div class="absolute bottom-8 left-8 right-8 shadow-text">
+                        <p class="text-xs text-emerald-400 font-bold mb-2 uppercase tracking-widest flex items-center gap-2">
+                            <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span> Video Content
+                        </p>
+                        <h4 class="font-bold text-xl md:text-2xl text-white leading-tight">데이터로 읽는 인간, AI로 그리는 사회</h4>
                     </div>
                 </a>
             </div>
@@ -275,7 +322,7 @@
                     </div>
                     <div>
                         <h4 class="font-bold text-xl text-white mb-2">데이터 저널리스트</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">중요한 사회적 질문을 던지고, 데이터를 통해 과학적으로 답을 찾아 대중에게 투명하게 전달하는 전문가가 되겠습니다.</p>
+                        <p class="text-slate-400 text-sm">중요한 사회적 질문을 던지고, 데이터를 통해 과학적으로 답을 찾아 전달하는 전문가.</p>
                     </div>
                 </div>
                 <div class="p-8 glass rounded-3xl border border-white/5 flex items-start gap-6 card-hover">
@@ -284,7 +331,7 @@
                     </div>
                     <div>
                         <h4 class="font-bold text-xl text-white mb-2">소셜 데이터 사이언티스트</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">빅데이터를 활용해 실질적인 불평등 문제를 시각화하고, 데이터에 기반한 실효성 있는 정책 대안을 설계하겠습니다.</p>
+                        <p class="text-slate-400 text-sm">빅데이터를 활용해 실질적인 불평등 문제를 시각화하고 대안을 설계하는 전문가.</p>
                     </div>
                 </div>
             </div>
@@ -297,12 +344,10 @@
     </footer>
 
     <script>
-        // Lucide 아이콘 초기화
         lucide.createIcons();
 
         let myChart = null;
 
-        // 탭 전환 함수
         function switchTab(tabId) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => {
@@ -331,20 +376,22 @@
         }
 
         function initChart() {
-            const ctx = document.getElementById('insightChart').getContext('2d');
+            const ctx = document.getElementById('employmentChart').getContext('2d');
             if (myChart) myChart.destroy();
 
             myChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
-                    labels: ['일반 전공', '사회학 + SW 융합'],
+                    labels: ['23.01', '24.01', '25.01', '25.07', '26.01', '26.03'],
                     datasets: [{
-                        label: '시장 수요 (점수)',
-                        data: [60, 95],
-                        backgroundColor: ['rgba(59, 130, 246, 0.1)', 'rgba(52, 211, 153, 0.3)'],
-                        borderColor: ['#3b82f6', '#34d399'],
-                        borderWidth: 2,
-                        borderRadius: 10
+                        label: '청년층 취업자 증감 (만명)',
+                        data: [-5, -8, -10, -12, -14, -14.7],
+                        borderColor: '#f87171',
+                        backgroundColor: 'rgba(248, 113, 113, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#fff'
                     }]
                 },
                 options: {
@@ -353,13 +400,12 @@
                     plugins: { legend: { display: false } },
                     scales: {
                         y: { 
-                            beginAtZero: true, 
                             grid: { color: 'rgba(255, 255, 255, 0.05)' },
                             ticks: { color: '#64748b' }
                         },
                         x: { 
                             grid: { display: false },
-                            ticks: { color: '#94a3b8', font: { weight: 'bold' } }
+                            ticks: { color: '#94a3b8' }
                         }
                     }
                 }
