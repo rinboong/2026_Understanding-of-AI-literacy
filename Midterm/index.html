@@ -232,12 +232,10 @@
         <!-- 4. Multimedia -->
         <div id="multimedia" class="tab-content space-y-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- 인포그래픽 카드: 이미지 바로 보이기 -->
+                <!-- 인포그래픽 카드 -->
                 <a href="./info.png" target="_blank" class="block glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
-                    <!-- 실제 이미지: ./info.png -->
                     <img src="./info.png" alt="인포그래픽 미리보기" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition duration-500" onerror="this.style.display='none'">
                     
-                    <!-- 이미지 로드 실패 시 나타날 기본 배경 및 아이콘 -->
                     <div class="absolute inset-0 flex items-center justify-center bg-blue-500/10 group-hover:bg-transparent transition">
                         <i data-lucide="zoom-in" class="w-12 h-12 text-blue-500/40 opacity-0 group-hover:opacity-100 transition"></i>
                     </div>
@@ -248,15 +246,16 @@
                     </div>
                 </a>
                 
-                <div class="glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
-                    <div class="absolute inset-0 flex items-center justify-center bg-emerald-500/10 transition">
-                        <i data-lucide="play" class="w-16 h-16 text-emerald-500/30"></i>
+                <!-- 비디오 카드: 클릭 시 ./video.mp4 재생 -->
+                <a href="./video.mp4" target="_blank" class="block glass rounded-3xl overflow-hidden aspect-video relative group card-hover">
+                    <div class="absolute inset-0 flex items-center justify-center bg-emerald-500/10 transition group-hover:bg-emerald-500/20">
+                        <i data-lucide="play-circle" class="w-16 h-16 text-emerald-500/30 group-hover:text-emerald-500/60 transition"></i>
                     </div>
                     <div class="absolute bottom-8 left-8">
                         <p class="text-xs text-emerald-400 font-mono mb-2 uppercase tracking-widest">Video Content</p>
                         <h4 class="font-bold text-xl text-white">데이터로 읽는 인간, AI로 그리는 사회</h4>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
 
