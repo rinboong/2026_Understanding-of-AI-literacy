@@ -59,7 +59,6 @@
             box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
         }
 
-        /* 가독성을 위한 텍스트 그림자 */
         .shadow-text {
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
@@ -204,65 +203,129 @@
             </div>
         </div>
 
-        <!-- 3. Insights -->
-        <div id="data" class="tab-content space-y-10">
-            <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-                    <i data-lucide="file-text" class="text-blue-400"></i>
-                    사회과학의 데이터 사이언스 전환과 과제: 핵심 요약
-                </h2>
-                <p class="text-slate-300 leading-relaxed font-light">
-                    전통적인 사회과학은 이제 <span class="text-blue-400 font-bold">'계산사회과학(CSS)'</span>과 <span class="text-emerald-400 font-bold">'소셜 데이터 사이언스(SDS)'</span>로 진화하고 있습니다. 방대한 소셜 미디어와 행정 데이터를 AI 기법(텍스트 마이닝, 기계 학습 등)으로 분석하여 정밀한 사회적 통찰과 위험 예측을 가능하게 합니다.
-                </p>
+        <!-- 3. Insights (개편된 인사이트 탭) -->
+        <div id="data" class="tab-content space-y-12">
+            
+            <!-- 섹션 1: 고용 시장과 학문 간 격차 -->
+            <div class="space-y-8">
+                <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white uppercase tracking-tight">
+                        <i data-lucide="line-chart" class="text-blue-400"></i> 학문 간 취업 시장 격차 분석
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed font-light">
+                        거시적인 청년 고용 한파 속에서도 실용적 데이터 학문을 결합한 융합 사회과학은 압도적인 취업 성과를 기록하고 있습니다. 
+                        단순 전공의 경계를 넘어 기술을 활용하는 능력이 곧 시장 가치입니다.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="glass p-8 rounded-3xl min-h-[400px]">
+                        <h3 class="text-lg font-bold mb-6 text-white text-center">전통 사회학 vs 데이터·미디어 융합 학과 취업률</h3>
+                        <div class="h-64 relative">
+                            <canvas id="employmentComparisonChart"></canvas>
+                        </div>
+                        <div class="mt-4 flex justify-between text-[10px] text-slate-500 italic">
+                            <span>* 전국 사회학 관련 학과 평균: 60.4%</span>
+                            <span>* 주요 융합 학과 평균: 84% 이상</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="glass p-6 rounded-2xl flex items-center gap-6 card-hover">
+                            <div class="w-16 h-16 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
+                                <span class="text-2xl font-black text-blue-400">11%</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">사회계열 대졸 임금 프리미엄</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed font-light">전문대졸 대비 4년제 대졸 사회계열 전공자의 초기 임금 프리미엄 수치</p>
+                            </div>
+                        </div>
+                        <div class="glass p-6 rounded-2xl flex items-center gap-6 card-hover border-red-500/20 border">
+                            <div class="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="trending-down" class="text-red-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">청년 고용 한파 현황</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed font-light">청년층 취업자 <span class="text-red-400 font-bold">41개월 연속 감소</span> 및 과학기술 서비스업 <span class="text-red-400 font-bold">4개월 연속 하락</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass p-8 rounded-3xl">
-                    <h3 class="text-lg font-bold mb-6 flex items-center gap-2 text-white">
-                        <i data-lucide="trending-down" class="text-red-400"></i> 청년층(15~29세) 고용 하락세 (2026.03 기준)
-                    </h3>
+            <!-- 섹션 2: AI 모델 성능 비교 (보건복지 정책 사례) -->
+            <div class="space-y-8">
+                <div class="glass p-8 rounded-3xl border-l-4 border-emerald-500">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white uppercase tracking-tight">
+                        <i data-lucide="zap" class="text-emerald-400"></i> 소셜 데이터 사이언스의 정밀도
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed font-light">
+                        미국 의료보장제도 환자 45,000명의 인구사회학적 변수를 AI로 분석한 결과, 딥러닝 기반 모델이 복지 사각지대 발굴에서 압도적인 효율성을 증명했습니다.
+                    </p>
+                </div>
+
+                <div class="glass p-8 rounded-3xl min-h-[400px]">
+                    <h3 class="text-lg font-bold mb-8 text-white text-center">사회안전망 강화를 위한 AI 위험 예측 모델 성능(재현율)</h3>
                     <div class="h-64 relative">
-                        <canvas id="employmentChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <div class="glass p-6 rounded-2xl border border-white/5">
-                        <h4 class="font-bold text-emerald-400 mb-3 flex items-center gap-2">
-                            <i data-lucide="user-minus"></i> 1인 가구 확산의 경제적 취약성
-                        </h4>
-                        <p class="text-sm text-slate-300 leading-relaxed font-light">
-                            2023년 기준 세 가구 중 한 가구가 1인 가구이나, 이들의 소득은 다인 가구 대비 <span class="text-white font-bold">34% 낮고</span>, 순자산은 <span class="text-white font-bold">59% 수준</span>에 불과합니다.
-                        </p>
-                    </div>
-                    <div class="glass p-6 rounded-2xl border border-white/5">
-                        <h4 class="font-bold text-purple-400 mb-3 flex items-center gap-2">
-                            <i data-lucide="shield-alert"></i> 데이터 거버넌스와 윤리
-                        </h4>
-                        <p class="text-sm text-slate-300 leading-relaxed font-light">
-                            데이터 활용 급증에 따라 개인정보 보호 및 익명 처리, 표준화된 데이터 인용 체계(DOI 등) 확립이 연구 신뢰성 확보의 핵심 요소로 부상했습니다.
-                        </p>
+                        <canvas id="aiPerformanceChart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass p-6 rounded-xl border-t-2 border-blue-500 text-center">
-                    <h5 class="font-bold text-white mb-2 italic">텍스트 마이닝</h5>
-                    <p class="text-xs text-slate-400">여론 조사 정확도 최대 15% 향상</p>
+            <!-- 섹션 3: 필수 취업 스펙 및 가산점 테이블 -->
+            <div class="space-y-8">
+                <div class="glass p-8 rounded-3xl border-l-4 border-purple-500">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white uppercase tracking-tight">
+                        <i data-lucide="award" class="text-purple-400"></i> 융합 인재의 핵심 경쟁력: 데이터 자격증
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed font-light">
+                        사회조사분석사 및 빅데이터분석기사는 여론조사, UX 리서치 진출의 필수 스펙이며, 공공기관 취업 시 강력한 가산점 혜택을 제공합니다.
+                    </p>
                 </div>
-                <div class="glass p-6 rounded-xl border-t-2 border-emerald-500 text-center">
-                    <h5 class="font-bold text-white mb-2 italic">위험 예측 모델</h5>
-                    <p class="text-xs text-slate-400">의료 보장 입원율 예측(정확도 80%)</p>
-                </div>
-                <div class="glass p-6 rounded-xl border-t-2 border-purple-500 text-center">
-                    <h5 class="font-bold text-white mb-2 italic">미래 전략 지표</h5>
-                    <p class="text-xs text-slate-400">저출산·고령화 대응 하위 지표 구축</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 자격증 가산점 테이블 -->
+                    <div class="glass p-8 rounded-3xl overflow-hidden">
+                        <h4 class="font-bold text-white mb-6 flex items-center gap-2">
+                            <i data-lucide="check-circle" class="text-purple-400"></i> 주요 공공기관 가산점 현황
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/5">
+                                <span class="text-slate-300 font-medium">근로복지공단 / 공무원연금공단</span>
+                                <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full font-bold text-xs">+25점</span>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/5">
+                                <span class="text-slate-300 font-medium">국립공원공단</span>
+                                <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full font-bold text-xs">+25점</span>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/5">
+                                <span class="text-slate-300 font-medium">한국조폐공사</span>
+                                <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full font-bold text-xs">+12점</span>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/5">
+                                <span class="text-slate-300 font-medium">통계직 공무원 (1급 기준)</span>
+                                <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full font-bold text-xs">+5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 커리큘럼 전환 카드 -->
+                    <div class="glass p-8 rounded-3xl flex flex-col justify-center border border-white/10">
+                        <h4 class="font-bold text-white mb-4 italic text-xl">AI 시대로의 학문적 전환</h4>
+                        <p class="text-slate-400 leading-relaxed text-sm mb-6">
+                            최근 사회학계는 4차 산업혁명에 맞춰 <span class="text-white font-bold">소셜 데이터 사이언스(SDS)</span> 트랙으로 커리큘럼을 전격 전환하고 있습니다.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-500">
+                            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> 공공선을 위한 데이터 사이언스</li>
+                            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> 인공지능과 사회불평등</li>
+                            <li class="flex items-center gap-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> 질적연구를 위한 빅데이터 실습</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 4. Multimedia (그레이디언트 강화 및 가독성 개선) -->
+        <!-- 4. Multimedia -->
         <div id="multimedia" class="tab-content space-y-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- 인포그래픽 카드 -->
@@ -346,7 +409,8 @@
     <script>
         lucide.createIcons();
 
-        let myChart = null;
+        let employmentChart = null;
+        let aiPerformanceChart = null;
 
         function switchTab(tabId) {
             const contents = document.querySelectorAll('.tab-content');
@@ -368,30 +432,28 @@
             );
 
             if (tabId === 'data') {
-                setTimeout(initChart, 100);
+                setTimeout(initCharts, 100);
             }
 
             const navPos = document.querySelector('nav').offsetTop;
             window.scrollTo({ top: navPos - 10, behavior: 'smooth' });
         }
 
-        function initChart() {
-            const ctx = document.getElementById('employmentChart').getContext('2d');
-            if (myChart) myChart.destroy();
-
-            myChart = new Chart(ctx, {
-                type: 'line',
+        function initCharts() {
+            // 차트 1: 학문 간 취업률 비교
+            const ctx1 = document.getElementById('employmentComparisonChart').getContext('2d');
+            if (employmentChart) employmentChart.destroy();
+            employmentChart = new Chart(ctx1, {
+                type: 'bar',
                 data: {
-                    labels: ['23.01', '24.01', '25.01', '25.07', '26.01', '26.03'],
+                    labels: ['전통 사회학', '데이터·미디어 융합'],
                     datasets: [{
-                        label: '청년층 취업자 증감 (만명)',
-                        data: [-5, -8, -10, -12, -14, -14.7],
-                        borderColor: '#f87171',
-                        backgroundColor: 'rgba(248, 113, 113, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4,
-                        pointBackgroundColor: '#fff'
+                        label: '취업률 (%)',
+                        data: [60.4, 84.6], // 사회학과 평균 vs 주요 융합학과 보수적 평균
+                        backgroundColor: ['rgba(255, 255, 255, 0.1)', 'rgba(96, 165, 250, 0.4)'],
+                        borderColor: ['rgba(255, 255, 255, 0.3)', '#60a5fa'],
+                        borderWidth: 2,
+                        borderRadius: 12
                     }]
                 },
                 options: {
@@ -399,14 +461,35 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        y: { 
-                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                            ticks: { color: '#64748b' }
-                        },
-                        x: { 
-                            grid: { display: false },
-                            ticks: { color: '#94a3b8' }
-                        }
+                        y: { beginAtZero: true, max: 100, grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b' } },
+                        x: { grid: { display: false }, ticks: { color: '#e2e8f0', font: { weight: 'bold' } } }
+                    }
+                }
+            });
+
+            // 차트 2: AI 모델별 예측 성능 비교
+            const ctx2 = document.getElementById('aiPerformanceChart').getContext('2d');
+            if (aiPerformanceChart) aiPerformanceChart.destroy();
+            aiPerformanceChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['로지스틱 회귀', 'SVM', '딥러닝 (MLP)'],
+                    datasets: [{
+                        label: '예측 재현율 (%)',
+                        data: [17, 41, 78],
+                        backgroundColor: ['rgba(255, 255, 255, 0.05)', 'rgba(255, 255, 255, 0.1)', 'rgba(52, 211, 153, 0.4)'],
+                        borderColor: ['rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.3)', '#34d399'],
+                        borderWidth: 2,
+                        borderRadius: 12
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, max: 100, grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b' } },
+                        x: { grid: { display: false }, ticks: { color: '#e2e8f0', font: { weight: 'bold' } } }
                     }
                 }
             });
