@@ -51,16 +51,16 @@
         </div>
         
         <div class="z-10" id="hero-content">
-            <h2 class="text-blue-400 font-bold tracking-widest mb-4 opacity-0" id="hero-sub">BUSAN TOURISM 2026</h2>
-            <h1 class="text-5xl md:text-8xl font-black mb-6 leading-tight opacity-0" id="hero-title">
+            <h2 class="text-blue-400 font-bold tracking-widest mb-4 opacity-0" id="hero-sub" style="transform: translateY(20px);">BUSAN TOURISM 2026</h2>
+            <h1 class="text-5xl md:text-8xl font-black mb-6 leading-tight opacity-0" id="hero-title" style="transform: translateY(20px);">
                 Busan Connect<br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 neon-text">Beyond the Beach</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 opacity-0" id="hero-desc">
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 opacity-0" id="hero-desc" style="transform: translateY(20px);">
                 바다를 넘어, 부산의 진짜 삶(Life) 속으로.<br>
                 데이터가 증명하는 로컬 에너지와 미식의 진화를 경험하세요.
             </p>
-            <button class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-bold transition-all transform hover:scale-105 opacity-0" id="hero-btn">
+            <button onclick="document.getElementById('strategy-section').scrollIntoView({behavior: 'smooth'})" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-bold transition-all transform hover:scale-105 opacity-0" id="hero-btn" style="transform: translateY(20px);">
                 기획안 자세히 보기
             </button>
         </div>
@@ -97,7 +97,7 @@
     </section>
 
     <!-- Strategies Section -->
-    <section class="py-24 px-4 bg-black/30">
+    <section id="strategy-section" class="py-24 px-4 bg-black/30">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div>
@@ -181,7 +181,8 @@
             <p class="text-gray-400 mb-10">로컬의 삶이 관광의 중심이 되는 새로운 시대, Busan Connect와 함께하세요.</p>
             <div class="flex flex-col md:flex-row gap-4 justify-center">
                 <a href="#" class="bg-white text-black px-10 py-4 rounded-full font-bold hover:bg-gray-200 transition-all">제휴 문의하기</a>
-                <a href="#" class="bg-transparent border border-gray-600 px-10 py-4 rounded-full font-bold hover:bg-gray-800 transition-all">상세 기획서 다운로드</a>
+                <!-- Updated Button to Open PDF -->
+                <a href="./07_pdf.pdf" target="_blank" class="bg-transparent border border-gray-600 px-10 py-4 rounded-full font-bold hover:bg-gray-800 transition-all">상세 기획서 다운로드</a>
             </div>
         </div>
     </section>
