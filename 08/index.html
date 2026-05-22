@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부산 관광 뉴스 vs 댓글 여론 분석 대시보드</title>
+    <!-- Tailwind CSS (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Noto Sans KR & Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .font-mont {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* 스크롤바 디자인 현대화 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-800 min-h-screen flex flex-col antialiased">
+
+    <!-- 상단 내비게이션 바 -->
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="bg-indigo-600 text-white text-xs font-bold px-2.5 py-1 rounded-md tracking-wider">DATA-LAB</span>
+                <h1 class="text-lg font-bold tracking-tight">부산 관광 여론 지형 분석 및 정책 대시보드</h1>
+            </div>
+            <div class="text-xs text-slate-400 hidden md:block">
+                KBS 뉴스 리포트 & 댓글 여론 빅데이터 기반 솔루션 플랫폼
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8">
+        
+        <!-- 히어로 섹션 -->
+        <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl p-6 md:p-10 shadow-lg relative overflow-hidden">
+            <div class="absolute right-0 top-0 -mt-12 -mr-12 w-64 h-64 bg-blue-500 rounded-full opacity-10 blur-3xl"></div>
+            <div class="absolute left-1/3 bottom-0 -mb-16 w-80 h-80 bg-emerald-500 rounded-full opacity-10 blur-3xl"></div>
+            
+            <div class="relative z-10 max-w-3xl space-y-4">
+                <div class="inline-flex items-center space-x-2 bg-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full text-xs font-semibold">
+                    <span>💡 분석 테마: 언론 지표 vs 시민 체감 온도 차</span>
+                </div>
+                <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight">
+                    부산 외국인 지출 '1조 시대', <br class="hidden sm:inline">지속 가능한 공존을 위한 해법은?
+                </h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                    KBS 보도를 통해 나타난 부산의 거시적 성과(전국 2위 도약)와 대형 호재 속에서, 실제 대중(댓글 분석 자료)이 느끼는 숙박·물가 상승 및 교통 불편 등 미시적인 우려를 해소하고 상생하는 관광 생태계 모델을 제시합니다.
+                </p>
+            </div>
+        </div>
+
+        <!-- 3열 요약 카드 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 카드 1 -->
+            <div class="bg-white p-6 rounded-xl shadow-xs border border-slate-100 flex items-start space-x-4">
+                <div class="bg-blue-50 text-blue-600 p-3 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-500">뉴스 핵심 지표</h3>
+                    <p class="text-2xl font-bold text-slate-900 mt-1">지출액 1조 돌파</p>
+                    <p class="text-xs text-blue-600 mt-1">인천 제치고 전국 2위 (32.4% ↑)</p>
+                </div>
+            </div>
+            <!-- 카드 2 -->
+            <div class="bg-white p-6 rounded-xl shadow-xs border border-slate-100 flex items-start space-x-4">
+                <div class="bg-purple-50 text-purple-600 p-3 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-500">여론 지배적 반응 (기타 제외)</h3>
+                    <p class="text-2xl font-bold text-slate-900 mt-1">경제효과 & 환영</p>
+                    <p class="text-xs text-purple-600 mt-1">언급 비율 합산 약 208여 건</p>
+                </div>
+            </div>
+            <!-- 카드 3 -->
+            <div class="bg-white p-6 rounded-xl shadow-xs border border-slate-100 flex items-start space-x-4">
+                <div class="bg-rose-50 text-rose-600 p-3 rounded-lg">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-500">숨은 핵심 갈등 요인</h3>
+                    <p class="text-2xl font-bold text-slate-900 mt-1">물가·숙박 & 교통</p>
+                    <p class="text-xs text-rose-600 mt-1">실생활 부작용 언급 합산 130건</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 메인 데이터 시각화 및 대조 분석 영역 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- 좌측: 고신뢰도 네이티브 SVG 인터랙티브 차트 (8열) -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-xs border border-slate-200">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-950 flex items-center space-x-2">
+                                <span class="w-3 h-3 bg-indigo-600 rounded-full"></span>
+                                <span>부산 관광 관련 댓글 카테고리 분포 (키워드 기반)</span>
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-0.5">외부 차트 라이브러리 차단 문제를 해결한 무결성 고해상도 자체 렌더링 엔진</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 차트가 렌더링될 실제 컨테이너 (높이 및 구조 고정화) -->
+                    <div id="chartContainer" class="relative flex items-center justify-center bg-slate-50 rounded-xl px-4 py-6" style="min-height: 360px; width: 100%;">
+                        <!-- 안전 장치용 로딩 문구 (스크립트 실행 전 대비) -->
+                        <div id="chartLoader" class="absolute inset-0 flex flex-col items-center justify-center space-y-3 bg-slate-50 rounded-xl">
+                            <div class="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
+                            <span class="text-xs font-semibold text-slate-500">차트를 안전하게 그리는 중입니다...</span>
+                        </div>
+                    </div>
+
+                    <!-- 차트 범례 및 인사이트 요약 배지 -->
+                    <div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                        <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            <span class="block text-xs text-slate-500">최다 수치</span>
+                            <span class="block font-bold text-slate-900 text-sm">기타 (424건)</span>
+                        </div>
+                        <div class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-100">
+                            <span class="block text-xs text-indigo-600">긍정 여론 최다</span>
+                            <span class="block font-bold text-indigo-950 text-sm">경제효과 (110건)</span>
+                        </div>
+                        <div class="bg-rose-50 p-2.5 rounded-lg border border-rose-100">
+                            <span class="block text-xs text-rose-600 font-medium">최대 불편 호소</span>
+                            <span class="block font-bold text-rose-950 text-sm">숙박·물가 (73건)</span>
+                        </div>
+                        <div class="bg-amber-50 p-2.5 rounded-lg border border-amber-100">
+                            <span class="block text-xs text-amber-600 font-medium">뉴스 대비 저평가</span>
+                            <span class="block font-bold text-amber-950 text-sm">관광객 쏠림 (29건)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 비교 분석 테이블 -->
+                <div class="bg-white p-6 rounded-2xl shadow-xs border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-950 mb-4 flex items-center space-x-2">
+                        <span>⚖️</span>
+                        <span>언론 보도 vs 댓글 여론 온도 차 매트릭스</span>
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-700 border-b border-slate-200">
+                                    <th class="p-3 font-semibold rounded-l-lg">주요 분석 항목</th>
+                                    <th class="p-3 font-semibold text-blue-700">📺 KBS 뉴스 영상의 무게중심</th>
+                                    <th class="p-3 font-semibold text-emerald-700 rounded-r-lg">💬 실제 댓글 대중의 체감 반응</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="p-3 font-medium text-slate-900">핵심 관점</td>
+                                    <td class="p-3 text-slate-600">
+                                        <strong>거시적 성과 중심</strong><br>
+                                        외국인 소비 1조 돌파, 인천 추월 전국 2위, 고부가가치 비즈니스 성과 조명
+                                    </td>
+                                    <td class="p-3 text-slate-600">
+                                        <strong>미시적 생활 밀착형</strong><br>
+                                        인구 고령화·감소 속 급작스런 유입이 우리 삶과 물가에 어떤 악영향을 주는지 경계
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-medium text-slate-900">관광 문제점 분석</td>
+                                    <td class="p-3 text-slate-600">
+                                        <strong>공간 불균형 (쏠림) 지적</strong><br>
+                                        서면·해운대·부산역에 소비 53% 집중. 서부산 소외 등 불균형 성장 우려
+                                    </td>
+                                    <td class="p-3 text-slate-600">
+                                        <strong>실생활 인프라 붕괴 제기</strong><br>
+                                        쏠림(29건)보다 당장의 물가 폭등(73건), 교통 마비(57건) 스트레스를 더 무겁게 호소
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-medium text-slate-900">소비에 대한 해석</td>
+                                    <td class="p-3 text-slate-600">
+                                        <strong>전통시장 활성화 & 구매 증대</strong><br>
+                                        대만인들의 이불 다량 구매, 전통시장 명란김밥 가성비 맛집 부각
+                                    </td>
+                                    <td class="p-3 text-slate-600">
+                                        <strong>부정적 오버투어리즘 유발</strong><br>
+                                        관광객 때문에 내수 물가마저 상승하고 지역 주민이 시장에서 밀려날 우려 존재
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 우측: 인터랙티브 인사이트 익스플로러 (5열) -->
+            <div class="lg:col-span-5 space-y-6">
+                
+                <!-- 탭 상세 분석 패널 -->
+                <div class="bg-white p-6 rounded-2xl shadow-xs border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-950 mb-2">💡 미디어-대중 시각 차이 정밀 해부</h3>
+                    <p class="text-xs text-slate-500 mb-4">각 이슈를 통해 뉴스의 논조와 여론의 현실적 대립을 진단해 볼 수 있습니다.</p>
+                    
+                    <div class="space-y-3">
+                        <!-- 카드 1 -->
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50 hover:bg-indigo-50/40 hover:border-indigo-100 transition duration-200">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2 py-0.5 rounded">괴리율 극대</span>
+                                <span class="text-xs text-slate-400">우선순위 역전</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-sm">숙박·물가 vs 가성비</h4>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                <strong>뉴스:</strong> 전통시장의 돼지국밥, 명란김밥 등을 '가성비 명물'로 소개하며 지갑이 잘 열린다고 분석.<br>
+                                <strong>댓글 여론(73건):</strong> 숙박 비용의 거품과 바가지요금이 외려 내국인 관광 장벽과 시민 불편을 야기함을 경고.
+                            </p>
+                        </div>
+
+                        <!-- 카드 2 -->
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50 hover:bg-indigo-50/40 hover:border-indigo-100 transition duration-200">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-0.5 rounded">인프라 대립</span>
+                                <span class="text-xs text-slate-400">교통 혼잡 가중</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-sm">대중교통 패스 vs 차량 정체</h4>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                <strong>뉴스:</strong> '비짓 부산 패스'가 외국인 필수 템이 되어 지하철 이용률이 높다는 긍정 지표 강조.<br>
+                                <strong>댓글 여론(57건):</strong> 이미 과부하인 특정 노선과 주말 서면·해운대 일대의 교통 지옥에 대한 개선책이 먼저라는 비판론 팽배.
+                            </p>
+                        </div>
+
+                        <!-- 카드 3 -->
+                        <div class="border border-slate-100 rounded-xl p-4 bg-slate-50 hover:bg-indigo-50/40 hover:border-indigo-100 transition duration-200">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-0.5 rounded">해결책 촉구</span>
+                                <span class="text-xs text-slate-400">정책 제안 49건</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-sm">인센티브 분산 vs 실효적 대책</h4>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                <strong>뉴스:</strong> 서부산 활성화 등 지역 분산이 되지 않으면 도시 불균형 성장이 발생함을 분석.<br>
+                                <strong>댓글 여론:</strong> "낙후된 곳을 억지로 갈 이유를 만들지 말고, 주거지와 관광지 교통 인프라를 전면 이원화하라"는 실효적 요구 제기.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 최종 요약 박스 -->
+                <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-6 rounded-2xl shadow-md space-y-4">
+                    <h3 class="text-md font-bold text-indigo-300 flex items-center space-x-1.5">
+                        <span>🎯</span>
+                        <span>대시보드를 통해 본 인사이트 최종 요약</span>
+                    </h3>
+                    <div class="text-xs md:text-sm text-slate-200 space-y-3 leading-relaxed">
+                        <p>
+                            부산의 관광 매출 1조 달성은 축하받아 마땅하지만, **수치에 함몰된 언론의 시선**과 **실제 주거 부담을 겪는 시민 여론**은 큰 격차를 보여줍니다.
+                        </p>
+                        <p>
+                            특히 뉴스 속에서 주 장벽으로 논한 **'관광객 쏠림(29건)'**보다, 대중은 관광지 난개발로 촉발되는 **'숙박·물가(73건)', '교통체증(57건)'**을 직접 피부에 닿는 생존형 위협으로 체감 중입니다.
+                        </p>
+                        <p class="border-t border-indigo-500/30 pt-3 text-white font-medium">
+                            📌 성공적인 2조 시대를 위해서는 단순 관광 홍보를 넘어 <span class="text-emerald-400">"오버투어리즘 제어 대책"</span>과 <span class="text-emerald-400">"시민 교통 인프라 정비"</span>가 최우선 과제임을 시각화 데이터가 강력하게 조명합니다.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 하단 정책 제언 섹션 -->
+        <section class="bg-white p-6 md:p-8 rounded-2xl shadow-xs border border-slate-200 space-y-6">
+            <div class="border-b border-slate-100 pb-4">
+                <div class="inline-flex items-center space-x-2 bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-semibold mb-2">
+                    <span>🚀 여론 연계형 정책 혁신안</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">지속 가능한 부산 관광을 위한 4대 정책 개선 방안</h3>
+                <p class="text-xs text-slate-500 mt-1">여론 데이터(불만 사항)와 뉴스 빅데이터를 분석하여 도출한 실효성 있는 상생 발전 가이드라인</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 제언 1 -->
+                <div class="border border-slate-100 hover:border-indigo-100 bg-slate-50/50 p-5 rounded-xl flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center mb-4 font-bold text-lg">
+                            💸
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">숙박 및 생활 물가 안정이 최우선</h4>
+                        <span class="text-xs text-rose-600 font-semibold">숙박·물가 불만(73건) 해결책</span>
+                        <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                            급증하는 외국인 수요로 인해 원도심과 주요 관광지의 내국인 바가지 요금이 기승을 부립니다. 중개 수수료가 없는 <strong>부산형 공공 숙박 플랫폼</strong>을 도입하고, 투명한 정가제 준수업체에 '로컬 클린 가격 보증 마크'를 부여해 과도한 가격 인상을 자율 억제해야 합니다.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-200/50">
+                        <span class="text-xs font-semibold text-indigo-600">핵심전략:</span>
+                        <span class="text-xs text-slate-500 ml-1">공공 예약망 확충 및 정가 마크제</span>
+                    </div>
+                </div>
+
+                <!-- 제언 2 -->
+                <div class="border border-slate-100 hover:border-indigo-100 bg-slate-50/50 p-5 rounded-xl flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center mb-4 font-bold text-lg">
+                            🚌
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">생활-관광 교통 이원화 시스템</h4>
+                        <span class="text-xs text-amber-600 font-semibold">교통 혼잡(57건) 해결책</span>
+                        <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                            주말 서면·해운대 일대 교통 마비에 대비하여 주민 이동 동선과 관광 동선을 분리해야 합니다. 지하철 거점역에서 주요 핫플레이스로 즉시 이동하는 <strong>'관광객 전용 수요응답형 스마트 셔틀(DRT)'</strong> 도입과 도심 진입 차량 주말 혼잡통행료 부과를 고려해야 합니다.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-200/50">
+                        <span class="text-xs font-semibold text-indigo-600">핵심전략:</span>
+                        <span class="text-xs text-slate-500 ml-1">관광 전용 스마트 셔틀망 가동</span>
+                    </div>
+                </div>
+
+                <!-- 제언 3 -->
+                <div class="border border-slate-100 hover:border-indigo-100 bg-slate-50/50 p-5 rounded-xl flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4 font-bold text-lg">
+                            🗺️
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">동·서부산 연계 리워드 패스</h4>
+                        <span class="text-xs text-emerald-600 font-semibold">지역 쏠림(29건) 극복</span>
+                        <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                            특정 상권(서면·해운대 등) 53% 집중 현상을 해결하려면 서부산권 방문을 유도해야 합니다. '비짓 부산 패스' 소지자가 사상, 사하 등 서부산 로컬 명소나 재래시장을 연계 방문할 시 <strong>지하철 및 쇼핑 할인 혜택을 2배로 주는 차등 리워드 설계</strong>가 시급합니다.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-200/50">
+                        <span class="text-xs font-semibold text-indigo-600">핵심전략:</span>
+                        <span class="text-xs text-slate-500 ml-1">비짓 부산 패스 리워드 차등화</span>
+                    </div>
+                </div>
+
+                <!-- 제언 4 -->
+                <div class="border border-slate-100 hover:border-indigo-100 bg-slate-50/50 p-5 rounded-xl flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center mb-4 font-bold text-lg">
+                            🤝
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">정주 환경 기금 조성 (상생)</h4>
+                        <span class="text-xs text-blue-600 font-semibold">오버투어리즘 반발 사전 예방</span>
+                        <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                            관광 성공으로 인한 피해를 시민이 독박 쓰는 구조를 깨야 합니다. 외국인 숙박 대금에 소액의 '부산 관광 기여금(숙박세)'을 부과해 기금화하고, 이를 관광지 인근 <strong>주민 방음 대책, 도로 보수, 정주 여건 개선, 생활 불편 보상 지원 사업</strong>에 직접 환원하는 거버넌스를 구축합니다.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-200/50">
+                        <span class="text-xs font-semibold text-indigo-600">핵심전략:</span>
+                        <span class="text-xs text-slate-500 ml-1">관광 기여금 숙박세 주민 환원</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 하단 영역 -->
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-xs border-t border-slate-800">
+        <p class="mb-1">부산 관광 발전 방향 여론 수렴 데이터 시각화 리포트</p>
+        <p>© 2026 Data Intelligence Lab. Built for Interactive Insight Presentation.</p>
+    </footer>
+
+    <!-- 순수 JavaScript 기반 고해상도 SVG 차트 렌더러 -->
+    <script>
+        // 분석 대상 원천 데이터셋 (사용자 업로드 이미지 기반)
+        const chartData = [
+            { label: '기타', value: 424, color: '#4c2e6c' },
+            { label: '경제효과', value: 110, color: '#485282' },
+            { label: '외국인 인식', value: 98, color: '#3f6683' },
+            { label: '숙박·물가', value: 73, color: '#337684' },
+            { label: '교통 문제', value: 57, color: '#2c8c83' },
+            { label: '정책 제안', value: 49, color: '#3da77d' },
+            { label: '지역 자부심', value: 36, color: '#72bf6d' },
+            { label: '관광객 쏠림', value: 29, color: '#a9cf47' }
+        ];
+
+        function renderNativeSVGChart() {
+            const container = document.getElementById('chartContainer');
+            if (!container) return;
+
+            // 크기 동적 획득 (반응형 대응)
+            const width = container.clientWidth || 500;
+            const height = 340; // 플롯 높이 고정
+
+            // 컨테이너 초기 비우기 (로더 제거 및 리사이즈 시 초기화)
+            container.innerHTML = '';
+
+            const padding = { top: 20, right: 20, bottom: 65, left: 45 };
+            const plotWidth = width - padding.left - padding.right;
+            const plotHeight = height - padding.top - padding.bottom;
+            const maxValue = 450; // Y축 최대 가중치 기준선
+
+            // 네임스페이스 기반 SVG 노드 생성
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', height + 'px');
+            svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+            svg.style.overflow = 'visible';
+
+            // 1. 그리드 수평 보조선 및 Y축 레이블 드로잉
+            const yTicks = [0, 100, 200, 300, 400];
+            yTicks.forEach(tick => {
+                const y = padding.top + plotHeight - (tick / maxValue) * plotHeight;
+
+                // 보조선
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', padding.left);
+                line.setAttribute('y1', y);
+                line.setAttribute('x2', width - padding.right);
+                line.setAttribute('y2', y);
+                line.setAttribute('stroke', '#e2e8f0');
+                line.setAttribute('stroke-width', '1');
+                if (tick > 0) {
+                    line.setAttribute('stroke-dasharray', '3,3');
+                }
+                svg.appendChild(line);
+
+                // Y축 텍스트 레이블
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', padding.left - 10);
+                text.setAttribute('y', y + 4);
+                text.setAttribute('text-anchor', 'end');
+                text.setAttribute('fill', '#64748b');
+                text.style.fontSize = '11px';
+                text.style.fontWeight = '500';
+                text.textContent = tick;
+                svg.appendChild(text);
+            });
+
+            // 2. 툴팁 레이어 백업 및 동적 생성
+            let tooltip = document.getElementById('chart-native-tooltip');
+            if (!tooltip) {
+                tooltip = document.createElement('div');
+                tooltip.id = 'chart-native-tooltip';
+                tooltip.className = "absolute pointer-events-none bg-slate-950 text-white px-3 py-2 rounded-lg text-xs shadow-xl border border-slate-700 z-50 transition-opacity duration-150";
+                tooltip.style.display = 'none';
+                tooltip.style.fontFamily = 'Noto Sans KR, sans-serif';
+                document.body.appendChild(tooltip);
+            }
+
+            // 3. 바(Bar) 영역 및 레이블 축 설계
+            const barCount = chartData.length;
+            const gapRatio = 0.35; // 바 간격 비율
+            const bandWidth = plotWidth / barCount;
+            const barWidth = bandWidth * (1 - gapRatio);
+
+            chartData.forEach((item, index) => {
+                const x = padding.left + index * bandWidth + (bandWidth - barWidth) / 2;
+                const barHeight = (item.value / maxValue) * plotHeight;
+                const y = padding.top + plotHeight - barHeight;
+
+                // SVG Rect 바 생성
+                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                rect.setAttribute('x', x);
+                rect.setAttribute('y', padding.top + plotHeight); // 애니메이션 시작점 (바닥)
+                rect.setAttribute('width', barWidth);
+                rect.setAttribute('height', 0); // 시작 높이는 0
+                rect.setAttribute('fill', item.color);
+                rect.setAttribute('rx', '4'); // 완만한 둥근 모서리 적용
+                rect.style.transition = 'all 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+                rect.style.cursor = 'pointer';
+
+                svg.appendChild(rect);
+
+                // 마운트 후 상단 전개 트랜지션 애니메이션 실행 (차례대로 올라오도록 엇박 타이밍 조정)
+                setTimeout(() => {
+                    rect.setAttribute('y', y);
+                    rect.setAttribute('height', barHeight);
+                }, 80 + index * 40);
+
+                // 마우스 호버 리스너 연동 (반응형 툴팁 작동)
+                rect.addEventListener('mouseover', (e) => {
+                    rect.setAttribute('opacity', '0.85');
+                    tooltip.innerHTML = `
+                        <div class="font-bold text-slate-200 mb-0.5">${item.label}</div>
+                        <div>언급 빈도: <span class="text-indigo-300 font-bold">${item.value}건</span></div>
+                    `;
+                    tooltip.style.display = 'block';
+                    tooltip.style.opacity = '1';
+                });
+
+                rect.addEventListener('mousemove', (e) => {
+                    tooltip.style.left = e.pageX + 15 + 'px';
+                    tooltip.style.top = e.pageY - 25 + 'px';
+                });
+
+                rect.addEventListener('mouseout', () => {
+                    rect.setAttribute('opacity', '1');
+                    tooltip.style.opacity = '0';
+                    tooltip.style.display = 'none';
+                });
+
+                // X축 하단 텍스트 레이블 추가
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x + barWidth / 2);
+                text.setAttribute('y', padding.top + plotHeight + 15);
+                text.setAttribute('text-anchor', 'start');
+                text.setAttribute('fill', '#334155');
+                text.style.fontSize = '11px';
+                text.style.fontWeight = '700';
+                // 글자가 겹치지 않도록 대각선 35도 회전 연산 적용
+                text.setAttribute('transform', `rotate(35, ${x + barWidth / 2}, ${padding.top + plotHeight + 15})`);
+                text.textContent = item.label;
+                svg.appendChild(text);
+            });
+
+            container.appendChild(svg);
+        }
+
+        // 초기 실행 및 리사이즈 타임 가동
+        window.addEventListener('load', renderNativeSVGChart);
+        window.addEventListener('resize', renderNativeSVGChart);
+        
+        // DOM이 완료되었을 때 즉시 호출되도록 재차 보정 가동
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            renderNativeSVGChart();
+        } else {
+            document.addEventListener('DOMContentLoaded', renderNativeSVGChart);
+        }
+    </script>
+</body>
+</html>
