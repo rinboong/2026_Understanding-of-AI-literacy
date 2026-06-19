@@ -279,7 +279,16 @@
             { id: 7, title: "유튜브 댓글 분석", description: "Colab를 이용하여 유튜브 댓글 데이터 수집, Gemini를 이용해 유튜브 영상 내용 분석 후 기획서 작성", tool: "Google Colab, Google Gemini, Youtube", icon: "globe", color: "indigo", link: "./07/index.html" },
             { id: 8, title: "유튜브 댓글 분석 실습", description: "Colab를 이용한 유튜브 댓글 데이터 수집과 처리, Gemini API를 이용한 댓글 키워드 분석", tool: "Google Colab, Google Gemini(API), Youtube", icon: "database", color: "rose", link: "./08/index.html" },
             { id: 9, title: "부산 축제 정보", description: "Google Data Studio와 Open API를 활용하여 축제 정보 웹페이지 생성", tool: "Google Data Studio", icon: "check-circle-2", color: "sky", link: "https://ai.studio/apps/5ed8cb1a-6e46-47c9-914f-e2555f857f2c?fullscreenApplet=true" },
-            { id: 10, title: "삶의 만족도와 자살률의 상관관계-Google Antigravity", description: "에이전트 AI인 Google Antigravity를 이용하여 데이터 분석과 시각화 등을 한 번에 처리.", tool: "Google Antigravity", icon: "lightbulb", color: "amber", link: "./10/index.html" }
+            { id: 10, title: "삶의 만족도와 자살률의 상관관계-Google Antigravity", description: "에이전트 AI인 Google Antigravity를 이용하여 데이터 분석과 시각화 등을 한 번에 처리.", tool: "Google Antigravity", icon: "lightbulb", color: "amber", link: "./10/index.html" },
+            { 
+                id: 11, 
+                title: "기말고사", 
+                description: "한 학기 동안 배운 AI 리터러시 역량과 사회학적 통찰을 융합하여 설계한 최종 프로젝트 결과물.", 
+                tool: "Google Gemini, Google Colab, KOSIS 국가통계포털", 
+                icon: "award", 
+                color: "emerald", 
+                link: "./Final/index.html" 
+            }
         ];
 
         const techStack = [
@@ -294,17 +303,88 @@
             { name: "Notion", category: "Management" }
         ];
 
+        // 완벽하고 컴파일 안전한 색상 테마 매핑 정의
         const colorClasses = {
-            violet: "text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-500/10 group-hover:bg-violet-600",
-            blue: "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 group-hover:bg-blue-600",
-            emerald: "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 group-hover:bg-emerald-600",
-            fuchsia: "text-fuchsia-600 dark:text-fuchsia-400 bg-fuchsia-50 dark:bg-fuchsia-500/10 group-hover:bg-fuchsia-600",
-            orange: "text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-500/10 group-hover:bg-orange-600",
-            cyan: "text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-500/10 group-hover:bg-cyan-600",
-            indigo: "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 group-hover:bg-indigo-600",
-            rose: "text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-500/10 group-hover:bg-rose-600",
-            sky: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-500/10 group-hover:bg-sky-600",
-            amber: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 group-hover:bg-amber-600"
+            violet: {
+                icon: "text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-500/10 group-hover:bg-violet-600 group-hover:text-white",
+                titleHover: "group-hover:text-violet-600 dark:group-hover:text-violet-400",
+                badgeText: "text-violet-600 dark:text-violet-400",
+                buttonText: "text-violet-600 dark:text-violet-400",
+                glowBorder: "hover:border-violet-500/30 dark:hover:border-violet-500/40 hover:shadow-violet-500/5 dark:hover:shadow-violet-500/10",
+                bgGradient: "group-hover:bg-violet-500/5"
+            },
+            blue: {
+                icon: "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 group-hover:bg-blue-600 group-hover:text-white",
+                titleHover: "group-hover:text-blue-600 dark:group-hover:text-blue-400",
+                badgeText: "text-blue-600 dark:text-blue-400",
+                buttonText: "text-blue-600 dark:text-blue-400",
+                glowBorder: "hover:border-blue-500/30 dark:hover:border-blue-500/40 hover:shadow-blue-500/5 dark:hover:shadow-blue-500/10",
+                bgGradient: "group-hover:bg-blue-500/5"
+            },
+            emerald: {
+                icon: "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 group-hover:bg-emerald-600 group-hover:text-white",
+                titleHover: "group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
+                badgeText: "text-emerald-600 dark:text-emerald-400",
+                buttonText: "text-emerald-600 dark:text-emerald-400",
+                glowBorder: "hover:border-emerald-500/30 dark:hover:border-emerald-500/40 hover:shadow-emerald-500/5 dark:hover:shadow-emerald-500/10",
+                bgGradient: "group-hover:bg-emerald-500/5"
+            },
+            fuchsia: {
+                icon: "text-fuchsia-600 dark:text-fuchsia-400 bg-fuchsia-50 dark:bg-fuchsia-500/10 group-hover:bg-fuchsia-600 group-hover:text-white",
+                titleHover: "group-hover:text-fuchsia-600 dark:group-hover:text-fuchsia-400",
+                badgeText: "text-fuchsia-600 dark:text-fuchsia-400",
+                buttonText: "text-fuchsia-600 dark:text-fuchsia-400",
+                glowBorder: "hover:border-fuchsia-500/30 dark:hover:border-fuchsia-500/40 hover:shadow-fuchsia-500/5 dark:hover:shadow-fuchsia-500/10",
+                bgGradient: "group-hover:bg-fuchsia-500/5"
+            },
+            orange: {
+                icon: "text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-500/10 group-hover:bg-orange-600 group-hover:text-white",
+                titleHover: "group-hover:text-orange-600 dark:group-hover:text-orange-400",
+                badgeText: "text-orange-600 dark:text-orange-400",
+                buttonText: "text-orange-600 dark:text-orange-400",
+                glowBorder: "hover:border-orange-500/30 dark:hover:border-orange-500/40 hover:shadow-orange-500/5 dark:hover:shadow-orange-500/10",
+                bgGradient: "group-hover:bg-orange-500/5"
+            },
+            cyan: {
+                icon: "text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-500/10 group-hover:bg-cyan-600 group-hover:text-white",
+                titleHover: "group-hover:text-cyan-600 dark:group-hover:text-cyan-400",
+                badgeText: "text-cyan-600 dark:text-cyan-400",
+                buttonText: "text-cyan-600 dark:text-cyan-400",
+                glowBorder: "hover:border-cyan-500/30 dark:hover:border-cyan-500/40 hover:shadow-cyan-500/5 dark:hover:shadow-cyan-500/10",
+                bgGradient: "group-hover:bg-cyan-500/5"
+            },
+            indigo: {
+                icon: "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 group-hover:bg-indigo-600 group-hover:text-white",
+                titleHover: "group-hover:text-indigo-600 dark:group-hover:text-indigo-400",
+                badgeText: "text-indigo-600 dark:text-indigo-400",
+                buttonText: "text-indigo-600 dark:text-indigo-400",
+                glowBorder: "hover:border-indigo-500/30 dark:hover:border-indigo-500/40 hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/10",
+                bgGradient: "group-hover:bg-indigo-500/5"
+            },
+            rose: {
+                icon: "text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-500/10 group-hover:bg-rose-600 group-hover:text-white",
+                titleHover: "group-hover:text-rose-600 dark:group-hover:text-rose-400",
+                badgeText: "text-rose-600 dark:text-rose-400",
+                buttonText: "text-rose-600 dark:text-rose-400",
+                glowBorder: "hover:border-rose-500/30 dark:hover:border-rose-500/40 hover:shadow-rose-500/5 dark:hover:shadow-rose-500/10",
+                bgGradient: "group-hover:bg-rose-500/5"
+            },
+            sky: {
+                icon: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-500/10 group-hover:bg-sky-600 group-hover:text-white",
+                titleHover: "group-hover:text-sky-600 dark:group-hover:text-sky-400",
+                badgeText: "text-sky-600 dark:text-sky-400",
+                buttonText: "text-sky-600 dark:text-sky-400",
+                glowBorder: "hover:border-sky-500/30 dark:hover:border-sky-500/40 hover:shadow-sky-500/5 dark:hover:shadow-sky-500/10",
+                bgGradient: "group-hover:bg-sky-500/5"
+            },
+            amber: {
+                icon: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 group-hover:bg-amber-600 group-hover:text-white",
+                titleHover: "group-hover:text-amber-600 dark:group-hover:text-amber-400",
+                badgeText: "text-amber-600 dark:text-amber-400",
+                buttonText: "text-amber-600 dark:text-amber-400",
+                glowBorder: "hover:border-amber-500/30 dark:hover:border-amber-500/40 hover:shadow-amber-500/5 dark:hover:shadow-amber-500/10",
+                bgGradient: "group-hover:bg-amber-500/5"
+            }
         };
 
         const initTheme = () => {
@@ -348,7 +428,7 @@
 
         // 안전한 페이지 이동 함수
         function navigateTo(path) {
-            if (path === '#') return;
+            if (!path || path === '#') return;
             // Blob URL 환경에서도 상대 경로를 정상적으로 처리하기 위해 표준 앵커 방식을 사용합니다.
             const link = document.createElement('a');
             link.href = path;
@@ -385,33 +465,33 @@
             const grid = document.getElementById('assignment-grid');
             if (!grid) return;
             grid.innerHTML = assignments.map(item => {
-                const colorStyle = colorClasses[item.color] || colorClasses.violet;
+                const theme = colorClasses[item.color] || colorClasses.violet;
                 return `
                 <div 
                     onclick="navigateTo('${item.link}')"
-                    class="group relative h-80 rounded-3xl overflow-hidden border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/40 hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl hover:shadow-zinc-500/10 dark:hover:shadow-violet-500/10 cursor-pointer flex flex-col p-8 shadow-sm dark:shadow-none"
+                    class="group relative h-80 rounded-3xl overflow-hidden border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/40 hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col p-8 shadow-sm dark:shadow-none ${theme.glowBorder}"
                 >
-                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-zinc-500/5 rounded-full blur-3xl group-hover:bg-zinc-500/15 transition-colors"></div>
+                    <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full blur-3xl transition-all duration-500 ${theme.bgGradient} bg-zinc-500/5"></div>
                     
                     <div class="flex justify-between items-start mb-6">
                         <span class="text-xs font-mono text-zinc-400 dark:text-zinc-500 tracking-wider">Assignment ${String(item.id).padStart(2, '0')}</span>
-                        <div class="p-2.5 rounded-xl transition-all ${colorStyle} group-hover:text-white">
+                        <div class="p-2.5 rounded-xl transition-all duration-300 ${theme.icon}">
                             <i data-lucide="${item.icon}" class="w-6 h-6"></i>
                         </div>
                     </div>
                     
-                    <h3 class="text-xl font-bold mb-3 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors text-zinc-800 dark:text-zinc-100">${item.title}</h3>
+                    <h3 class="text-xl font-bold mb-3 transition-colors duration-300 text-zinc-800 dark:text-zinc-100 ${theme.titleHover}">${item.title}</h3>
                     
                     <div class="flex items-center space-x-2 mb-4">
-                        <i data-lucide="code" class="w-3 h-3 text-emerald-500 dark:text-emerald-400"></i>
-                        <span class="text-[10px] text-emerald-600 dark:text-emerald-400/80 font-mono uppercase tracking-widest font-bold">${item.tool}</span>
+                        <i data-lucide="code" class="w-3 h-3 ${theme.badgeText}"></i>
+                        <span class="text-[10px] font-mono uppercase tracking-widest font-bold ${theme.badgeText}">${item.tool}</span>
                     </div>
 
                     <div class="mt-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                        <p class="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-3 leading-relaxed">
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-3 leading-relaxed mb-4">
                             ${item.description}
                         </p>
-                        <div class="mt-4 flex items-center text-xs font-bold text-violet-600 dark:text-violet-400 uppercase tracking-tighter">
+                        <div class="flex items-center text-xs font-bold uppercase tracking-tighter ${theme.buttonText}">
                             결과물 보기 
                             <i data-lucide="plus" class="w-4 h-4 ml-1"></i>
                         </div>
